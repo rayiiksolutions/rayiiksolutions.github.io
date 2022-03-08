@@ -7,13 +7,25 @@
   frameborder="0"
   width="100%"
   height="480px"
-><br></iframe><script async src="https://cse.google.com/cse.js?cx=84d8955a6fb97f740"></script>
+                       ><br></div><div></iframe><script async src="https://cse.google.com/cse.js?cx=84d8955a6fb97f740"></script>
       <div class="gcse-search"></br></div>
     <script src="resources/J3DI.js"> </script>
     <script src="resources/J3DIMath.js" type="application/javascript"> </script>
     <script type="application/javascript" src="../common/webgl-utils.js"></script>
     <script type="application/javascript" src="../../devtools/src/debug/webgl-debug.js"></script>
     <script id="vshader" type="x-shader/x-vertex">
+    
+    <b><!-- Create a simple CodeMirror instance -->
+<link rel="stylesheet" href="lib/codemirror.css">
+<script src="lib/codemirror.js"></script><div>
+<div><script>
+  var editor = CodeMirror.fromTextArea(myTextarea, {
+    lineNumbers: true
+  });
+  </script></b></div>
+      <div><script async src="https://cse.google.com/cse.js?cx=84d8955a6fb97f740"></script>
+<div class="gcse-search"></div>
+    <div>
         /*
           Copyright (c) 2008 Seneca College
           Licenced under the MIT License (http://www.c3dl.org/index.php/mit-license/)
@@ -438,166 +450,12 @@
         <div id="framerate"></div>
         <div id="container">
             <img id="bg" src="resources/BambooBridge.jpg" />
-            <canvas id="example" width="800px" height="600px">
-<!-- Licensed under a BSD license. See license.html for license -->
 
-<script src="resources/webgl-lessons-ui.js"></script>
-<script src="resources/twgl-full.min.js"></script>
-<script src="resources/m4.js"></script>
-<script>
-"use strict";
-
-const vs = `#version 300 es
-in vec4 a_position;
-in vec4 a_color;
-
-uniform mat4 u_matrix;
-
-out vec4 v_color;
-
-void main() {
-  // Multiply the position by the matrix.
-  gl_Position = u_matrix * a_position;
-
-  // Pass the vertex color to the fragment shader.
-  v_color = a_color;
-}
-`;
-
-const fs = `#version 300 es
-precision highp float;
-
-// Passed in from the vertex shader.
-in vec4 v_color;
-
-out vec4 outColor;
-
-void main() {
-  outColor = v_color;
-}
-`;
-
-function main() {
-  // Get A WebGL context
-  /** @type {HTMLCanvasElement} */
-  const canvas = document.querySelector("#canvas");
-  const gl = canvas.getContext("webgl2");
-  if (!gl) {
-    return;
-  }
-
-  // setup GLSL programs
-  // compiles shaders, links program, looks up locations
-  const programInfo = twgl.createProgramInfo(gl, [vs, fs]);
-
-  // Tell the twgl to match position with a_position,
-  // normal with a_normal etc..
-  twgl.setAttributePrefix("a_");
-
-  // create buffers and fill with data for a 3D 'F'
-  const bufferInfo = twgl.primitives.create3DFBufferInfo(gl);
-  const vao = twgl.createVAOFromBufferInfo(gl, programInfo, bufferInfo);
-
-  function degToRad(d) {
-    return d * Math.PI / 180;
-  }
-
-  const settings = {
-    rotation: 150,  // in degrees
-  };
-  webglLessonsUI.setupUI(document.querySelector("#ui"), settings, [
-    { type: "slider",   key: "rotation",   min: 0, max: 360, change: render, precision: 2, step: 0.001, },
-  ]);
-
-  const fieldOfViewRadians = degToRad(120);
-
-  function drawScene(projectionMatrix, cameraMatrix, worldMatrix) {
-    // Clear the canvas AND the depth buffer.
-    gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-
-    // Make a view matrix from the camera matrix.
-    const viewMatrix = m4.inverse(cameraMatrix);
-
-    let mat = m4.multiply(projectionMatrix, viewMatrix);
-    mat = m4.multiply(mat, worldMatrix);
-
-    gl.useProgram(programInfo.program);
-
-    // ------ Draw the F --------
-
-    // Setup all the needed attributes.
-    gl.bindVertexArray(vao);
-
-    // Set the uniforms
-    twgl.setUniforms(programInfo, {
-      u_matrix: mat,
-    });
-
-    // calls gl.drawArrays or gl.drawElements
-    twgl.drawBufferInfo(gl, bufferInfo);
-  }
-
-  function render() {
-    twgl.resizeCanvasToDisplaySize(gl.canvas);
-
-    gl.enable(gl.CULL_FACE);
-    gl.enable(gl.DEPTH_TEST);
-
-    // we're going to split the view in 2
-    const effectiveWidth = gl.canvas.clientWidth / 2;
-    const aspect = effectiveWidth / gl.canvas.clientHeight;
-    const near = 1;
-    const far = 2000;
-
-    // Compute a perspective projection matrix
-    const perspectiveProjectionMatrix =
-        m4.perspective(fieldOfViewRadians, aspect, near, far);
-
-    // Compute an orthographic projection matrix
-    const halfHeightUnits = 120;
-    const orthographicProjectionMatrix = m4.orthographic(
-        -halfHeightUnits * aspect,  // left
-         halfHeightUnits * aspect,  // right
-        -halfHeightUnits,           // bottom
-         halfHeightUnits,           // top
-         -75,                       // near
-         2000);                     // far
-
-
-    // Compute the camera's matrix using look at.
-    const cameraPosition = [0, 0, -75];
-    const target = [0, 0, 0];
-    const up = [0, 1, 0];
-    const cameraMatrix = m4.lookAt(cameraPosition, target, up);
-
-    let worldMatrix = m4.yRotation(degToRad(settings.rotation));
-    worldMatrix = m4.xRotate(worldMatrix, degToRad(settings.rotation));
-    // center the 'F' around its origin
-    worldMatrix = m4.translate(worldMatrix, -35, -75, -5);
-
-    const {width, height} = gl.canvas;
-    const leftWidth = width / 2 | 0;
-
-    // draw on the left with orthographic camera
-    gl.viewport(0, 0, leftWidth, height);
-    gl.clearColor(1, 0, 0, 1);  // red
-
-    drawScene(orthographicProjectionMatrix, cameraMatrix, worldMatrix);
-
-    // draw on the right with perspective camera
-    const rightWidth = width - leftWidth;
-    gl.viewport(leftWidth, 0, rightWidth, height);
-    gl.clearColor(0, 0, 1, 1);  // blue
-
-    drawScene(perspectiveProjectionMatrix, cameraMatrix, worldMatrix);
-  }
-  render();
-}
-
-main();
-</script>
-
-            </canvas>
+<iframe
+  src="https://your-sourcegraph-instance.com/embed/notebooks/notebook-id"
+  frameborder="0"
+  sandbox="allow-scripts allow-same-origin allow-popups"
+></iframe>
         </div>
   </body>
 </html>
