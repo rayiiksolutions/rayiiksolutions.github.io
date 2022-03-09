@@ -245,18 +245,19 @@
             var isTilted = false;
         </script>
         <style type="text/css">
-            #body {
-                background-color: grey;
-                display: grid;
+            #grid  {
+                grid-template-rows: 40vh 40vh;
+                grid-auto-flow: row;
+                grid-gap: 5px;;
             }
-            
-            #body>div {
+
+            #grid > div {
                 background-color: rgb(9, 0, 27);
                 color: rgb(11, 168, 38);
                 font-size: 4vw;
                 padding: 10px;
-            }
-            
+            } 
+
             #header {
                 background-color: orangered;
                 font-style: italic;
@@ -330,12 +331,12 @@
 </head>
 
 <body id="body" onload="start()">
-    <div id="grid">
-        <div id="rocker">Rayiik Solutions</div>
-        <div id="framerate"></div>
-        <div id="gse"><iframe title="gse"><script async src="https://cse.google.com/cse.js?cx=84d8955a6fb97f740"></script></iframe></div>
-        <div id="Sourcegraph"><iframe title="notebook" src="https://sourcegraph.com/embed/notebooks/Tm91ZWJvb2s6MzYx" frameborder="0" sandbox="allow-scripts allow-same-origin allow-popups"></iframe>
-        </div>
+<div id="grid">
+    <div id="rocker">Rayiik Solutions</div>
+    <div id="framerate"></div>
+    <div id="gse"><iframe title="gse"><script async src="https://cse.google.com/cse.js?cx=84d8955a6fb97f740"></script></iframe></div>
+    <div id="Sourcegraph"><iframe title="notebook" src="https://sourcegraph.com/embed/notebooks/Tm91ZWJvb2s6MzYx" frameborder="0" sandbox="allow-scripts allow-same-origin allow-popups"></iframe>
+    </div>
     </div>
 </body>
 
