@@ -4,18 +4,18 @@
 <head>
     <title>Rayiik Solutions Stuff & Things</title>
 
-        <script src="resources/J3DI.js">
-        </script>
-        <script src="resources/J3DIMath.js" type="application/javascript">
-        </script>
-        <script type="application/javascript" src="../common/webgl-utils.js"></script>
-        <script type="application/javascript" src="../../devtools/src/debug/webgl-debug.js"></script>
-        <script id="vshader" type="x-shader/x-vertex">
+    <script src="resources/J3DI.js">
+    </script>
+    <script src="resources/J3DIMath.js" type="application/javascript">
+    </script>
+    <script type="application/javascript" src="../common/webgl-utils.js"></script>
+    <script type="application/javascript" src="../../devtools/src/debug/webgl-debug.js"></script>
+    <script id="vshader" type="x-shader/x-vertex">
 
-            <b><!-- Create a simple CodeMirror instance -->
+        <b><!-- Create a simple CodeMirror instance -->
                 </b>
 
-           
+
         <script id="fshader" type="x-shader/x-fragment">
             precision mediump float; struct Light { vec4 ambient; vec4 diffuse; vec4 specular; vec4 position; vec3 halfVector; }; struct Material { vec4 emission; vec4 ambient; vec4 diffuse; vec4 specular; float shininess; }; uniform sampler2D u_sampler2d; uniform
             Light u_light; uniform Material u_frontMaterial; uniform Material u_backMaterial; varying vec4 v_diffuse, v_ambient; varying vec3 v_normal, v_lightDir; varying vec2 v_texCoord; void main() { vec4 color = v_diffuse; vec3 n = normalize(v_normal);
@@ -232,13 +232,12 @@
         <style type="text/css">
             #grid {
                 display: grid;
-                grid-template-rows: 30vh 1fr 1fr 1fr 1fr;
+                grid-template-rows: 40vh 40vh;
                 grid-auto-flow: row;
                 grid-gap: 5px;
-                height: 50px;
             }
             
-            #grid > div {
+            #grid>div {
                 background-color: rgb(9, 0, 27);
                 color: rgb(11, 168, 38);
                 font-size: 4vw;
@@ -307,26 +306,31 @@
                 font-size: 2em;
                 font-family: helvetica;
                 color: blue;
+                vertical-align: bottom;
             }
         </style>
 </head>
+
 <body>
-            <div id="gse"><iframe title="gse"><script async src="https://cse.google.com/cse.js?cx=84d8955a6fb97f740"></script></iframe></div>
-         <div id="Sourcegraph"><iframe title="notebook" src="https://sourcegraph.com/embed/notebooks/rayiik" frameborder="0" sandbox="allow-scripts allow-same-origin allow-popups"></iframe></div>
-    </div>
-<div id="grid">
-     <link rel="stylesheet" href="lib/codemirror.css">
-            <script src="lib/codemirror.js"></script>
-            <div>
-                    <script>
-                        var editor = CodeMirror.fromTextArea(myTextarea, {
-                            lineNumbers: true
-                        });
-                    </script>
-              </div>
+    <canvas id="canvas">
+
+
+        <script async src="https://cse.google.com/cse.js?cx=84d8955a6fb97f740"></script>
+        <div class="gcse-search"></div>
+</canvas>
+    <div id="grid">
+        <link rel="stylesheet" href="lib/codemirror.css">
+        <script src="lib/codemirror.js"></script>
+        <div>
+            <script>
+                var editor = CodeMirror.fromTextArea(myTextarea, {
+                    lineNumbers: true
+                });
+            </script>
+        </div>
         </script>
 
-<div id="rocker">Rayiik Solutions</div>
+        <div id="rocker">Rayiik Solutions</div>
 </body>
 
 </html>
