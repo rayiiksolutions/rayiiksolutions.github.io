@@ -223,9 +223,8 @@
                 var f = function() {
                     drawPicture(ctx);
                     requestId = window.requestAnimFrame(f, canvas);
-                };
+                }
                 f();
-
                 function handleContextLost(e) {
                     e.preventDefault();
                     clearLoadingObjects();
@@ -248,7 +247,7 @@
             #grid  {
                 grid-template-rows: 40vh 40vh;
                 grid-auto-flow: row;
-                grid-gap: 5px;;
+                grid-gap: 5px;
             }
 
             #grid > div {
@@ -256,14 +255,8 @@
                 color: rgb(11, 168, 38);
                 font-size: 4vw;
                 padding: 10px;
-            } 
-
-            #header {
-                background-color: orangered;
-                font-style: italic;
-                position: relative;
             }
-            
+
             #container {
                 -webkit-transform-origin: 400px 300px;
                 -webkit-transform: perspective(800) translateX(0) rotateY(0) rotateZ(0) translateZ(-10px);
@@ -331,13 +324,13 @@
 </head>
 
 <body id="body" onload="start()">
+    <canvas>
 <div id="grid">
-    <div id="rocker">Rayiik Solutions</div>
-    <div id="framerate"></div>
-    <div id="gse"><iframe title="gse"><script async src="https://cse.google.com/cse.js?cx=84d8955a6fb97f740"></script></iframe></div>
-    <div id="Sourcegraph"><iframe title="notebook" src="https://sourcegraph.com/embed/notebooks/Tm91ZWJvb2s6MzYx" frameborder="0" sandbox="allow-scripts allow-same-origin allow-popups"></iframe>
+    <b><div id="rocker">Rayiik Solutions</div></b>
+    <b><div id="gse"><iframe title="gse"><script async src="https://cse.google.com/cse.js?cx=84d8955a6fb97f740"></script></iframe></div></b>
+    <b><div id="Sourcegraph"><iframe title="notebook" src="https://sourcegraph.com/embed/notebooks/Tm91ZWJvb2s6MzYx" frameborder="0" sandbox="allow-scripts allow-same-origin allow-popups"></iframe></div></b>
     </div>
-    </div>
+</canvas>
 </body>
 
 </html>
