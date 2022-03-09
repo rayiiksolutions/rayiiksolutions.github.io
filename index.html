@@ -245,12 +245,19 @@
             var isTilted = false;
         </script>
         <style type="text/css">
-            body {
+            #body {
                 background-color: grey;
                 display: grid;
             }
             
-            header {
+            #body>div {
+                background-color: rgb(9, 0, 27);
+                color: rgb(11, 168, 38);
+                font-size: 4vw;
+                padding: 10px;
+            }
+            
+            #header {
                 background-color: orangered;
                 font-style: italic;
                 position: relative;
@@ -266,7 +273,7 @@
                 -webkit-transform: perspective(800) translateX(200px) rotateY(60deg) rotateZ(320deg) translateZ(-250px);
             }
             
-            canvas {
+            #canvas {
                 width: 800px;
                 height: 600px;
                 position: absolute;
@@ -323,12 +330,12 @@
 </head>
 
 <body id="body" onload="start()">
- <div id="grid">
-    <div id="rocker">Rayiik Solutions</div>
-    <div id="framerate"></div>
-    <div id="gse"><iframe title="gse"><script async src="https://cse.google.com/cse.js?cx=84d8955a6fb97f740"></script></iframe></div>
-    <div id="Sourcegraph"><iframe title="notebook" src="https://sourcegraph.com/embed/notebooks/Tm90ZWJvb2s6MzYx" frameborder="0" sandbox="allow-scripts allow-same-origin allow-popups"></iframe>
-    </div>
+    <div id="grid">
+        <div id="rocker">Rayiik Solutions</div>
+        <div id="framerate"></div>
+        <div id="gse"><iframe title="gse"><script async src="https://cse.google.com/cse.js?cx=84d8955a6fb97f740"></script></iframe></div>
+        <div id="Sourcegraph"><iframe title="notebook" src="https://sourcegraph.com/embed/notebooks/Tm91ZWJvb2s6MzYx" frameborder="0" sandbox="allow-scripts allow-same-origin allow-popups"></iframe>
+        </div>
     </div>
 </body>
 
